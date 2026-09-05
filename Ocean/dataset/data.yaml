@@ -1,0 +1,19 @@
+# AquaNex AI - YOLO Marine Debris Side-Scan Sonar Dataset
+path: C:\Users\parim\Documents\Ocean\dataset
+train: train/images
+val: valid/images
+test: test/images
+
+# Number of target classes
+nc: 8
+
+# Target class names
+names:
+  0: 'Ghost Net'
+  1: 'Plastic Debris'
+  2: 'Fishing Net'
+  3: 'Tire'
+  4: 'Metal Object'
+  5: 'Bottle'
+  6: 'Unknown Debris'
+  7: 'Natural Seafloor / No Debris'

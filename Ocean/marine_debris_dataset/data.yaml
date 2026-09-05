@@ -1,0 +1,18 @@
+# AquaNex AI - YOLO11 Marine Debris Sonar Dataset
+train: train/images
+val: valid/images
+test: test/images
+
+nc: 10
+
+names:
+  - Plastic Debris
+  - Fishing Gear
+  - Metal Debris
+  - Wood Debris
+  - Rubber Debris
+  - Glass Debris
+  - Abandoned Equipment
+  - Ship/Boat Debris
+  - Other Man-made Debris
+  - Unknown Anomaly

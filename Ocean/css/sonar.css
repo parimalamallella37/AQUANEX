@@ -1,0 +1,244 @@
+/* ==========================================================================
+   AquaNex AI - Sonar Visualizer & Comparison Engine Styles
+   ========================================================================== */
+
+/* Sonar Waterfall Container */
+.sonar-viewport {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  background-color: #02070e;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 194, 209, 0.3);
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 194, 209, 0.15);
+  user-select: none;
+}
+
+/* Procedural Sonar Canvas */
+.sonar-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+}
+
+/* CRT / Acoustic Scanline Overlay */
+.sonar-scanlines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.3) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.02),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.02)
+  );
+  background-size: 100% 3px, 6px 100%;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Moving Acoustic Ping Wave Line */
+@keyframes acousticPing {
+  0% { top: -10px; opacity: 0.8; }
+  100% { top: 100%; opacity: 0.05; }
+}
+
+.sonar-ping-bar {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #00C2D1, #16E0BD, #00C2D1, transparent);
+  box-shadow: 0 0 15px #00C2D1;
+  pointer-events: none;
+  animation: acousticPing 4s linear infinite;
+}
+
+/* Central Nadir Line (AUV track) */
+.sonar-nadir-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 14px;
+  transform: translateX(-50%);
+  background: rgba(2, 6, 12, 0.92);
+  border-left: 1px dashed rgba(0, 194, 209, 0.4);
+  border-right: 1px dashed rgba(0, 194, 209, 0.4);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sonar-nadir-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--accent-cyan);
+  letter-spacing: 0.2em;
+  writing-mode: vertical-lr;
+  opacity: 0.6;
+}
+
+/* Interactive YOLO Bounding Box */
+.yolo-box {
+  position: absolute;
+  border: 2px solid #00C2D1;
+  background: rgba(0, 194, 209, 0.08);
+  box-shadow: 0 0 12px rgba(0, 194, 209, 0.6), inset 0 0 12px rgba(0, 194, 209, 0.2);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 2px;
+}
+
+.yolo-box:hover {
+  border-color: #16E0BD;
+  background: rgba(22, 224, 189, 0.16);
+  box-shadow: 0 0 22px rgba(22, 224, 189, 0.8), inset 0 0 20px rgba(22, 224, 189, 0.3);
+  transform: scale(1.01);
+  z-index: 20;
+}
+
+.yolo-box.selected {
+  border-color: #F5FAFF;
+  box-shadow: 0 0 25px rgba(0, 194, 209, 1), inset 0 0 25px rgba(0, 194, 209, 0.4);
+  z-index: 25;
+}
+
+.yolo-box.risk-high {
+  border-color: #EF4444;
+  background: rgba(239, 68, 68, 0.12);
+  box-shadow: 0 0 14px rgba(239, 68, 68, 0.6), inset 0 0 12px rgba(239, 68, 68, 0.2);
+}
+
+.yolo-box.risk-high:hover {
+  border-color: #F87171;
+  background: rgba(239, 68, 68, 0.22);
+  box-shadow: 0 0 26px rgba(239, 68, 68, 0.9);
+}
+
+/* Corner Reticles for High-Tech HUD */
+.yolo-corner {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: #FFFFFF;
+}
+.yolo-corner-tl { top: -2px; left: -2px; border-top: 2px solid; border-left: 2px solid; }
+.yolo-corner-tr { top: -2px; right: -2px; border-top: 2px solid; border-right: 2px solid; }
+.yolo-corner-bl { bottom: -2px; left: -2px; border-bottom: 2px solid; border-left: 2px solid; }
+.yolo-corner-br { bottom: -2px; right: -2px; border-bottom: 2px solid; border-right: 2px solid; }
+
+/* Tag Badge attached to Box */
+.yolo-tag {
+  position: absolute;
+  top: -24px;
+  left: -2px;
+  background: rgba(4, 13, 24, 0.95);
+  border: 1px solid currentColor;
+  padding: 2px 7px;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  backdrop-filter: blur(4px);
+}
+
+/* Split View Comparison Slider */
+.comparison-container {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 194, 209, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  user-select: none;
+}
+
+.comparison-image-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.comparison-slider-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--accent-cyan);
+  box-shadow: 0 0 15px rgba(0, 194, 209, 0.9), 0 0 30px rgba(22, 224, 189, 0.5);
+  cursor: ew-resize;
+  z-index: 30;
+}
+
+.comparison-handle-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  background: #061A2D;
+  border: 2px solid var(--accent-cyan);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-cyan);
+  box-shadow: 0 0 20px rgba(0, 194, 209, 0.7);
+  transition: transform 0.15s ease;
+}
+
+.comparison-slider-handle:hover .comparison-handle-button {
+  transform: translate(-50%, -50%) scale(1.1);
+  background: #0B3D5C;
+  color: #F5FAFF;
+}
+
+/* Floating HUD telemetry widgets */
+.hud-telemetry-badge {
+  background: rgba(6, 26, 45, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 194, 209, 0.3);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+/* Verification Status Stamp */
+.stamp-verified {
+  border: 1.5px solid #10B981;
+  color: #10B981;
+  font-family: var(--font-hud);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 2px 6px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+/* Sonar Watermark Grid coordinates */
+.sonar-coord-marker {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: rgba(0, 194, 209, 0.45);
+  pointer-events: none;
+}
